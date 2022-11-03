@@ -1,4 +1,12 @@
 <p id="notice"><%= notice %></p>
+<h2>Tu Carrito de Compras<h2>
+<ul>
+    <% @cart.line_items.each do |item| %>
+    <li><%= item.product.title %> x <%= item.quantity %> = <%= item.total_price %></li>
+    <% end %>
+</ul>
+ <p>Total: <%= @cart.total_price%></p>
 
-<%= link_to 'Edit', edit_cart_path(@cart) %> |
-<%= link_to 'Back', carts_path %>
+ <%= button_to 'Vaciar', @cart, method: :delete,
+  data: { confirm: 'Estas seguro?' } %>
+
